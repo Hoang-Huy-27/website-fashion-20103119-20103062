@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,26 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/admin', [ProductController::class, 'hienthi'])->name('hienthi');
+Route::get('/them', [ProductController::class, 'them'])->name('them');
 
-Route::get('/admin', function () {  
-    return view('admin');
-});
-
+Route::post('/save', [
+    'as' => 'save',
+    'uses' => 'App\Http\Controllers\ProductController@save'
+]);
+Route::post('/save2', [
+    'as' => 'save2',
+    'uses' => 'App\Http\Controllers\ProductController@save2'
+]);
+Route::get('/sua/{id}', [
+    'as' => 'sua',
+    'uses' => 'App\Http\Controllers\ProductController@sua'
+]);
+Route::get('/xoa/{id}', [
+    'as' => 'xoa',
+    'uses' => 'App\Http\Controllers\ProductController@xoa'
+]);
+Route::post('/admin', [
+    'as' => 'admin',
+    'uses' => 'App\Http\Controllers\ProductController@hienthi'
+]);
