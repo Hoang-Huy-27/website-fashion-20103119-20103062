@@ -65,7 +65,7 @@ h1 {
 <body>
 <div id="wrapper">
         <h1>Sửa</h1>
-    <form action="{{Route('save2')}}" method="post">
+    <form enctype="multipart/form-data" action="{{Route('save2')}}" method="post">
     {{csrf_field()}}
     <div class="item">
         <label for="tensanpham">ID:{{$sp['id']}}</label>
@@ -81,10 +81,14 @@ h1 {
         <input type="number" name="soluong" id="soluong" value="{{$sp['soluong']}}">
     </div>
     <div class="item">
+        <label for="anh">Anh:</label>
+        <input type="file" name="anh" id="anh" value="{{$sp['anh']}}">
+    </div>
+    <div class="item">
     <p>Nhà Sản Xuất</p><br>
-        <select name="id_msx" id="">
+        <select name="id_nsx" id="">
             <?php foreach($nsx as $value):?>
-                <option value="{{$value['id']}}" <?php if($sp['id_msx']==$value['id'])?>
+                <option value="{{$value['id']}}" <?php if($sp['id_nsx']==$value['id'])?>
                 selected="selected" 
                 >{{$value['tennhasanxuat']}}
                 </option>

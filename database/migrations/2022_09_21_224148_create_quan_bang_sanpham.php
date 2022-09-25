@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('tensanpham');
             $table->integer('soluong');
-            $table->integer('id_msx')->unsigned();
+            $table->string('anh');
+            $table->integer('id_nsx')->unsigned();
+            $table->foreign('id_nsx')->references('id')->on('nha_san_xuat');
+            
             $table->timestamps();
         });
     }

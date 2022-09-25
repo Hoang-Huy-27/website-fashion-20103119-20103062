@@ -34,7 +34,15 @@ class ProductController extends Controller
         $sp =new model_SanPham();
         $sp->tensanpham= $rq->tensanpham;
         $sp->soluong= $rq->soluong;
-        $sp->id_msx= $rq->id_msx;
+        $sp->id_nsx= $rq->id_nsx;
+        if($file = $rq->file('anh'))
+        {
+            $name = $file->getClientOriginalName();
+            if($file->move(public_path('anh'),$name))
+            {
+                $sp->anh=$name;
+            }
+        }
         $sp->save();
         return redirect()->Route('admin');   
     }
@@ -43,7 +51,15 @@ class ProductController extends Controller
         $sp = model_SanPham::find($rq->id);
         $sp->tensanpham= $rq->tensanpham;
         $sp->soluong= $rq->soluong;
-        $sp->id_msx= $rq->id_msx;
+        if($file = $rq->file('anh'))
+        {
+            $name = $file->getClientOriginalName();
+            if($file->move(public_path('anh'),$name))
+            {
+                $sp->anh=$name;
+            }
+        }
+        $sp->id_nsx= $rq->id_nsx;
         $sp->save();
         return redirect()->Route('admin');   
     }

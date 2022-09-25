@@ -65,7 +65,7 @@ h1 {
 <body>
 <div id="wrapper">
         <h1>Thêm sản phẩm</h1>
-    <form action="{{ Route('save') }}" method="post">
+    <form action="{{ Route('save') }}" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="item">
         <label for="tensanpham">Tên sản phẩm:</label>
@@ -77,8 +77,12 @@ h1 {
         <input type="number" name="soluong" id="soluong">
     </div>
     <div class="item">
+        <label for="anh">Anh:</label>
+        <input type="file" name="anh" id="anh">
+    </div>
+    <div class="item">
     <p>Nhà Sản Xuất</p><br>
-        <select name="id_msx" id="">
+        <select name="id_nsx" id="">
             <?php foreach($nsx as $value):?>
                 <option value="{{$value['id']}}">{{$value['tennhasanxuat']}}</option>
             <?php endforeach?>

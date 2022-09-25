@@ -8,7 +8,7 @@
 
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <table border="1" style="width: 50%;margin-top:20px;margin-left:60px;"> 
+  <table style="width: 50%;margin-top:20px;margin-left:60px;"> 
     <h1 >
     Danh sách các sản phẩm
     </h1>
@@ -17,6 +17,7 @@
       <th>Tên sản phẩm</th>
       <th>Số lượng</th>
       <th>Nhà sản xuất</th>
+      <th>Anh</th>
       <th>Sửa</th>
       <th>Xoá</th>
     </tr>
@@ -32,7 +33,10 @@
                         <?php  echo $value['soluong']; ?>
                     </td>
                     <td>
-                        <?php  echo \App\Models\model_NhaSanXuat::find($value['id_msx'])->tennhasanxuat; ?>
+                        <img src="anh\<?php  echo $value['anh']; ?>" class="center-block" style="height:100px;width:100px" alt="">
+                    </td>
+                    <td>
+                        <?php  echo \App\Models\model_NhaSanXuat::find($value['id_nsx'])->tennhasanxuat; ?>
                     </td>
                     <td>
                         <a href="sua/{{$value['id']}}">Sửa</a>
@@ -42,8 +46,9 @@
                     </td>
                 </tr>
         <?php } ?>
+        <a href="them">Thêm sản phẩm</a>
     </table>
-    <a href="them">Thêm sản phẩm</a>
+    
   </div>
   <!-- /.content-wrapper -->
   
