@@ -10,43 +10,39 @@
   <div class="content-wrapper">
   <table style="width: 50%;margin-top:20px;margin-left:60px;"> 
     <h1 >
-    Danh sách các sản phẩm
+    Danh sách menu
     </h1>
   <tr>
       <th>STT</th>
-      <th>Tên sản phẩm</th>
-      <th>Số lượng</th>
-      <th>Anh</th>
-      <th>Nhà sản xuất</th>
+      <th>Tên</th>
+      <th>lever</th>
+      <th>parent_id</th>
       <th>Sửa</th>
       <th>Xoá</th>
     </tr>
         <?php
         $stt=0;
-            foreach($san_pham as $value) {$stt++;?>
+            foreach($danh_muc as $value) {$stt++;?>
                 <tr>
                     <td><?php echo $stt; ?></td>
                     <td>
-                        <?php echo $value['tensanpham']; ?>
+                        <?php echo $value['ten']; ?>
                     </td>
                     <td>
-                        <?php  echo $value['soluong']; ?>
+                        <?php  echo $value['lever']; ?>
                     </td>
                     <td>
-                        <img src="anh\<?php  echo $value['anh']; ?>" class="center-block" style="height:100px;width:100px" alt="">
+                        <?php  echo $value['parent_id']; ?>
                     </td>
                     <td>
-                        <?php  echo \App\Models\model_NhaSanXuat::find($value['id_nsx'])->tennhasanxuat; ?>
+                        <a href="suanav/{{$value['id']}}">Sửa</a>
                     </td>
                     <td>
-                        <a href="sua/{{$value['id']}}">Sửa</a>
-                    </td>
-                    <td>
-                        <a href="xoa/{{$value['id']}}">Xoá</a>
+                        <a href="xoadm/{{$value['id']}}">Xoá</a>
                     </td>
                 </tr>
         <?php } ?>
-        <a href="them">Thêm sản phẩm</a>
+        <a href="themnav">Thêm sản phẩm</a>
     </table>
     
   </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\model_SanPham;
 use App\Models\model_NhaSanXuat;
+use App\Models\model_DanhMuc;
 
 class ProductController extends Controller
 {
@@ -12,6 +13,11 @@ class ProductController extends Controller
     {
         $san_pham = model_SanPham::all()->toArray();
         return view('admin')->with('san_pham',$san_pham);
+    }
+    public function hienthi1()
+    {
+        $danh_muc = model_DanhMuc::all()->toArray();
+        return view('danhmucsanpham')->with('danh_muc',$danh_muc);
     }
     public function them()
     {
@@ -24,10 +30,20 @@ class ProductController extends Controller
         $sp = model_SanPham::find($id)->toArray();
         return view('sua',compact('nsx','sp'));
     }
+    public function suanav($id)
+    {
+        $sp = model_DanhMuc::find($id)->toArray();
+        return view('suanav',compact('sp'));
+    }
     public function xoa($id)
     {
         model_SanPham::find($id)->delete();
         return redirect()->Route('admin');
+    }
+    public function xoadm($id)
+    {
+        model_DanhMuc::find($id)->delete();
+        return redirect()->Route('danhmucsanpham');
     }
     public function save(Request $rq)
     {
@@ -63,4 +79,28 @@ class ProductController extends Controller
         $sp->save();
         return redirect()->Route('admin');   
     }
+    public function themdm2(Request $rq)
+    {
+        $sp = model_DanhMuc::find($rq->id);
+        $sp->ten= $rq->ten;
+        $sp->lever= $rq->lever;
+        $sp->parent_id= $rq->parent_id;
+        $sp->save();
+        return redirect()->Route('danhmucsanpham');   
+    }
+    public function themdm(Request $rq)
+    {
+        $sp =new model_DanhMuc();
+        $sp->ten= $rq->ten;
+        $sp->lever= $rq->lever;
+        $sp->parent_id= $rq->parent_id;
+        $sp->save();
+        return redirect()->Route('danhmucsanpham');  
+    }
+    public function themnav()
+    {
+        $nsx = model_DanhMuc::all()->toArray();
+        return view('themnav');
+    }
+
 }
